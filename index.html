@@ -1,1 +1,463 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><script defer="defer" src="/static/js/main.efc87fe6.js"></script><link href="/static/css/main.e6c13ad2.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="BongSeongEun의 개발자 포트폴리오 - 소개, 기술 스택, 프로젝트, 연락처"
+    />
+    <title>BongSeongEun | Portfolio</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #141b34;
+        --card-soft: #1a2345;
+        --text: #eff3ff;
+        --muted: #b8c1e1;
+        --point: #77a8ff;
+        --point-soft: #4f6eb8;
+        --max-width: 1040px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+        background: radial-gradient(circle at top, #18264f 0%, var(--bg) 48%);
+        color: var(--text);
+        scroll-behavior: smooth;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(92%, var(--max-width));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(8px);
+        background: rgba(11, 16, 32, 0.68);
+        z-index: 10;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 68px;
+      }
+
+      .logo {
+        font-size: 1.05rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .hero {
+        padding: 96px 0 84px;
+      }
+
+      .hero .wrapper {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: 1.4fr 1fr;
+        align-items: center;
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(119, 168, 255, 0.2);
+        border: 1px solid rgba(119, 168, 255, 0.5);
+        color: #c9dcff;
+        border-radius: 999px;
+        font-size: 0.86rem;
+        padding: 6px 12px;
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .hero p {
+        color: var(--muted);
+        margin: 18px 0 28px;
+        line-height: 1.7;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .btn {
+        border: none;
+        cursor: pointer;
+        border-radius: 12px;
+        font-weight: 700;
+        padding: 12px 18px;
+        transition: 0.2s;
+      }
+
+      .btn.primary {
+        background: var(--point);
+        color: #0c1738;
+      }
+
+      .btn.primary:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.06);
+      }
+
+      .btn.ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-card {
+        background: linear-gradient(160deg, var(--card-soft), var(--card));
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 24px;
+      }
+
+      .hero-card h3 {
+        margin: 0 0 14px;
+      }
+
+      .hero-card ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .section-title {
+        margin: 0 0 8px;
+        font-size: 1.6rem;
+      }
+
+      .section-desc {
+        margin: 0 0 28px;
+        color: var(--muted);
+      }
+
+      .about {
+        background: rgba(255, 255, 255, 0.03);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 14px;
+      }
+
+      .timeline-item {
+        border-left: 3px solid var(--point-soft);
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 8px;
+      }
+
+      .timeline-item strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .skill-card,
+      .project-card,
+      .contact-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 18px;
+      }
+
+      .skill-card h4,
+      .project-card h4 {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      .skill-card p,
+      .project-card p,
+      .contact-card p {
+        color: var(--muted);
+        margin-bottom: 0;
+        line-height: 1.6;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .project-meta {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        font-size: 0.78rem;
+        background: rgba(119, 168, 255, 0.16);
+        color: #d6e5ff;
+        padding: 4px 9px;
+        border-radius: 999px;
+      }
+
+      .contact-wrap {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: 1.2fr 1fr;
+      }
+
+      footer {
+        padding: 32px 0 48px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero .wrapper,
+        .contact-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 580px) {
+        .nav-links {
+          display: none;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <a class="logo" href="#home">BongSeongEun.dev</a>
+        <nav class="nav-links">
+          <a href="#about">소개</a>
+          <a href="#skills">기술</a>
+          <a href="#projects">프로젝트</a>
+          <a href="#contact">연락처</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home" class="container">
+      <section class="hero">
+        <div class="wrapper">
+          <div>
+            <span class="badge">Frontend Developer Portfolio</span>
+            <h1>
+              안녕하세요,<br />
+              사용자 경험을 고민하는 개발자 <br /><strong>봉성은</strong>입니다.
+            </h1>
+            <p>
+              아이디어를 실제 제품으로 빠르게 구현하고, 디테일을 꾸준히 개선하는 것을 좋아합니다.
+              React 기반 서비스 개발과 협업 경험을 바탕으로, 사용자에게 더 가치 있는 화면을 만듭니다.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#projects">프로젝트 보기</a>
+              <a class="btn ghost" href="mailto:youremail@example.com">이메일 보내기</a>
+            </div>
+          </div>
+
+          <aside class="hero-card">
+            <h3>핵심 요약</h3>
+            <ul>
+              <li>웹 서비스 프론트엔드 개발 및 UI 개선</li>
+              <li>컴포넌트 단위 설계와 유지보수 최적화</li>
+              <li>성능/접근성 점검 기반 품질 개선</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">소개</h2>
+        <p class="section-desc">
+          성장 과정과 경험을 짧게 정리했습니다. 아래 내용은 실제 이력에 맞게 자유롭게 수정해 사용하세요.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>2024 - 현재 · 프론트엔드 개발 학습/프로젝트 진행</strong>
+            React, TypeScript, 상태 관리, API 연동을 중심으로 실전 프로젝트를 수행했습니다.
+          </div>
+          <div class="timeline-item">
+            <strong>2023 · 팀 프로젝트 경험</strong>
+            Git 기반 협업, 코드 리뷰, 기능 단위 역할 분담을 통해 협업 개발 프로세스를 익혔습니다.
+          </div>
+          <div class="timeline-item">
+            <strong>2022 · 웹 개발 기초 학습</strong>
+            HTML/CSS/JavaScript를 기반으로 반응형 레이아웃과 인터랙션 구현을 연습했습니다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">기술 스택</h2>
+        <p class="section-desc">현재 다루고 있는 기술과 업무에서 활용하는 도구입니다.</p>
+
+        <div class="grid skills-grid">
+          <article class="skill-card">
+            <h4>Frontend</h4>
+            <p>HTML5, CSS3, JavaScript(ES6+), TypeScript, React</p>
+          </article>
+          <article class="skill-card">
+            <h4>Styling</h4>
+            <p>Styled Components, Tailwind CSS, 반응형 레이아웃</p>
+          </article>
+          <article class="skill-card">
+            <h4>Tools</h4>
+            <p>Git/GitHub, Figma, VS Code, Notion</p>
+          </article>
+          <article class="skill-card">
+            <h4>Collaboration</h4>
+            <p>이슈 기반 개발, 코드 리뷰, 문서화 습관</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">프로젝트</h2>
+        <p class="section-desc">대표 프로젝트 3가지를 예시로 배치했습니다.</p>
+
+        <div class="grid project-grid">
+          <article class="project-card">
+            <h4>프로젝트 A · 할 일 관리 웹앱</h4>
+            <p>
+              사용자 인증, CRUD, 필터링 기능을 구현한 생산성 도구입니다. 컴포넌트 구조화로
+              유지보수성을 높였습니다.
+            </p>
+            <div class="project-meta">
+              <span class="chip">React</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">Firebase</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h4>프로젝트 B · 영화 검색 서비스</h4>
+            <p>
+              외부 API를 연동하여 검색/상세 조회 기능을 제공하고, 로딩 및 에러 상태 처리를 통해
+              사용성을 개선했습니다.
+            </p>
+            <div class="project-meta">
+              <span class="chip">React Query</span>
+              <span class="chip">REST API</span>
+              <span class="chip">Vercel</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <h4>프로젝트 C · 포트폴리오 사이트</h4>
+            <p>
+              반응형 UI와 심플한 정보 구조를 중심으로 구성한 개인 사이트입니다. 빠른 로딩을 위해
+              정적 페이지로 제작했습니다.
+            </p>
+            <div class="project-meta">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">GitHub Pages</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">연락처</h2>
+        <p class="section-desc">아래 정보를 실제 계정으로 변경하면 바로 사용할 수 있습니다.</p>
+
+        <div class="contact-wrap">
+          <article class="contact-card">
+            <h4>Contact</h4>
+            <p>Email · youremail@example.com</p>
+            <p>GitHub · github.com/yourid</p>
+            <p>Blog · yourblog.example.com</p>
+          </article>
+
+          <article class="contact-card">
+            <h4>한 줄 메시지</h4>
+            <p>
+              "함께 일하기 편한 개발자, 그리고 문제 해결에 집요한 개발자가 되겠습니다."
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> BongSeongEun. All rights reserved.
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
